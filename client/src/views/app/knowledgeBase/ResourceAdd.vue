@@ -16,7 +16,7 @@
         </v-list-item>
         <v-list-item>
           <v-select
-            v-model="resource.cat_id"    
+            v-model="resource.cat_id"
             :items="categories"
             item-text="cat_name_pl"
             item-value="cat_id"
@@ -41,13 +41,13 @@
             </template>
           </v-toolbar>
         </template>
-        <template v-slot:item.actions="{ item }">
+        <template v-slot:[`item.actions`]="{ item }">
           <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
           <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
         </template>
-        <template
-          #item.combine="{ item }"
-        >{{ item.factor }} {{ item.factor_unit }}/{{ item.resource_unit_1 }}</template>
+        <template v-slot:[`item.combine`]="{ item }">
+          {{ item.factor }} {{ item.factor_unit }}/{{ item.resource_unit_1 }}
+        </template>
       </v-data-table>
 
       <v-card-actions>
@@ -58,23 +58,23 @@
         </router-link>
       </v-card-actions>
     </v-card>
-    <Source1AddPop
+    <source-pop
       v-if="sourcePop"
       @close="sourceClose"
       @created="sourceCreated"
       @save="saveItem"
       :editedItem="editedItem"
       :editedIndex="editedIndex"
-    ></Source1AddPop>
+    ></source-pop>
   </v-container>
 </template>
 
 <script>
-import Source1AddPop from "./PopUp/Source1AddPop";
+import SourcePop from "@/components/PopUp/Source1AddPop.vue"
 
 export default {
   components: {
-    Source1AddPop
+    SourcePop
   },
   data: () => ({
     dialog: false,

@@ -7,6 +7,7 @@ import Resources from './controllers/Resources';
 import ResourceFactor from './controllers/ResourceFactor';
 import ResourceSource from './controllers/ResourceSource';
 import ResourceUnit from './controllers/ResourceUnit';
+import Modules from './controllers/Modules';
 const express = require("express");
 const app = express();
 var bodyParser = require("body-parser");
@@ -53,6 +54,10 @@ app.post('/api/resources/addsource', ResourceSource.insertData);
 app.post('/api/resources/sourceUploadFile', ResourceSource.upload);
 
 app.get('/api/resources/getallunit',ResourceUnit.getAll);  //surowce źródło
+
+app.get('/api/modules/getall',Modules.getAll);  //moduły get all
+
+
 
 
 app.listen(3000);

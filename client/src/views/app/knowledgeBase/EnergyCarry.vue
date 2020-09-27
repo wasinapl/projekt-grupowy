@@ -1,10 +1,20 @@
 <template>
-  <v-app>
-    <v-container>
-      <v-card>
+  <v-container fluid>
+    <v-card outlined>
         <v-card-title>
-          Nośniki Energii
+            Nośniki Energii
           <v-spacer></v-spacer>
+                  <v-text-field
+                v-model="search"
+                append-icon="mdi-magnify"
+                label="Szukaj"
+                class="mr-3"
+                single-line
+                outlined
+                dense
+                hide-details
+              ></v-text-field>
+            <v-btn color="primary" outlined @click="energyAdd = true">Dodaj</v-btn>
         </v-card-title>
         <v-data-table
           :headers="headers"
@@ -14,37 +24,19 @@
           class="elevation-1"
           :loading="loading"
         >
-          <template v-slot:top>
-            <v-toolbar flat color="white">
-              <v-text-field
-                v-model="search"
-                append-icon="mdi-magnify"
-                label="Szukaj"
-                single-line
-                hide-details
-              ></v-text-field>
-              <v-spacer></v-spacer>
-                  <v-btn color="primary" dark class="mb-2" @click="energyAdd = true"
-                    >Dodaj</v-btn
-                  >
-
-            </v-toolbar>
-          </template>
-          <template v-slot:item.actions="{ item }">
+          <template v-slot:[`item.actions`]="{ item }">
             <v-icon small class="mr-2" @click="editItem(item)"
-              >mdi-pencil</v-icon
-            >
+              >mdi-pencil</v-icon>
             <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
           </template>
         </v-data-table>
         <EnergyCarryAdd v-if="energyAdd" @close="popClose" editedItem="editedItem"></EnergyCarryAdd>
       </v-card>
     </v-container>
-  </v-app>
 </template>
 
 <script>
-import EnergyCarryAdd from './PopUp/EneryCarryAdd'
+import EnergyCarryAdd from '@/components/PopUp/EneryCarryAdd'
 
 
 export default {

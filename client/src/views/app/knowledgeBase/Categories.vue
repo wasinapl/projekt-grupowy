@@ -1,7 +1,6 @@
 <template>
-  <v-container>
-    <v-row justify="center">
-      <v-col cols="12" sm="10" md="8" lg="6">
+  <v-container fluid>
+    <v-card outlined>
          <v-alert
           type="warning"
           transition="fab-transition"
@@ -14,7 +13,6 @@
           v-show="messageSuccess.length != 0"
           v-text="messageSuccess"
         ></v-alert>
-        <v-card ref="form">
           <v-card-text>
             <v-text-field label="Nazwa PL" v-model="category.cat_name_pl"></v-text-field>
             <v-text-field label="Nazwa EN" v-model="category.cat_name_eng"></v-text-field>
@@ -36,9 +34,7 @@
             <v-slide-x-reverse-transition></v-slide-x-reverse-transition>
             <v-btn color="primary" text @click="save">Dodaj</v-btn>
           </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
+    </v-card>
   </v-container>
 </template>
 

@@ -1,7 +1,6 @@
 <template>
-  <v-app>
-    <v-container>
-      <v-card>
+    <v-container fluid>
+      <v-card outlined>
         <v-alert
           type="success"
           v-show="messageSuccess.length != 0"
@@ -169,14 +168,13 @@
               </v-dialog>
             </v-toolbar>
           </template>
-          <template v-slot:item.actions="{ item }">
+          <template v-slot:[`item.actions`]="{ item }">
             <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
             <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
           </template>
         </v-data-table>
       </v-card>
     </v-container>
-  </v-app>
 </template>
 
 <script>

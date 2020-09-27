@@ -81,21 +81,10 @@
       </v-btn>
     </v-app-bar>
     <v-content>
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
+      <v-container fluid>
           <router-view></router-view>
-        </v-row>
       </v-container>
     </v-content>
-    <v-card height="150">
-      <v-footer absolute class="font-weight-medium">
-        <v-col class="text-center" cols="12">
-          <!--- footer -->
-          {{ new Date().getFullYear() }} — PETKI
-          <strong></strong>
-        </v-col>
-      </v-footer>
-    </v-card>
   </v-app>
 </template>
 
@@ -126,12 +115,13 @@ export default {
           { text: "Dane statystyczne" },
           { text: "Dodatkowe środki" },
           { text: "Przeliczniki" },
-          { text: "Źródła" },
+          { text: "Źródła", link: "sources"},
         ],
       },
       { text: "Moduł", icon: "mdi-cube-outline", link: "modules" },
+      { text: "Etapy", icon: "mdi-more", link: "stages" },
+      { text: "Linie", icon: "mdi-timeline", link: "lines" },
       { text: "Kalkulator", icon: "mdi-calculator" },
-      { text: "COś", icon: "mdi-pinterest" },
     ],
   }),
   methods: {

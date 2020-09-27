@@ -16,9 +16,9 @@ export default {
     },
   },
   created() {
-    if (this.loggedIn) {
-      this.$router.push("/");
-    }
+    // if (this.loggedIn) {
+    //   this.$router.push("/");
+    // }
   },
 
   methods: {},

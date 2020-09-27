@@ -1,10 +1,13 @@
 <template>
   <v-dialog v-model="dialog" max-width="500px" >
     <v-card>
+      <v-card-title>
+        Dodawanie nośnika energii
+      </v-card-title>
       <v-card-text>
         <v-container>
-          <v-row>
-            <v-col cols="10">
+          <v-row no-gutters>
+            <v-col cols="12">
               <v-select
                 v-model="saveData.gus_id"
                 :items="gus"
@@ -12,13 +15,9 @@
                 item-value="gus_id"
                 label="Nośnik wg GUS"
                 outlined
+                append-outer-icon="mdi-plus"
+                @click:append-outer="gusPop = true"
               ></v-select>
-            </v-col>
-            <v-col cols="2">
-              <v-btn dark class="mx-2" fab small @click="gusPop = true" id="gusPop">
-                <v-icon dark>mdi-plus</v-icon>
-              </v-btn>
-              
             </v-col>
             <v-col cols="6">
               <v-text-field
@@ -35,7 +34,6 @@
                 outlined
               ></v-text-field>
             </v-col>
-            <v-row>
               <v-col cols="4">
                 <v-subheader>Equiv kg CO2/unit</v-subheader>
               </v-col>
@@ -56,8 +54,6 @@
                   outlined
                 ></v-select>
               </v-col>
-            </v-row>
-            <v-row>
               <v-col cols="4">
                 <v-subheader>NCV [MJ/kg]</v-subheader>
               </v-col>
@@ -69,8 +65,6 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="4"></v-col>
-            </v-row>
-            <v-row>
               <v-col cols="4">
                 <v-subheader>WE [kg/GJ]</v-subheader>
               </v-col>
@@ -82,8 +76,6 @@
                   outlined
                 ></v-text-field>
               </v-col>
-              <v-col cols="4"></v-col>
-            </v-row>
           </v-row>
         </v-container>
       </v-card-text>
@@ -139,6 +131,7 @@ export default {
       this.$emit("close");
     },
     save() {
+
       this.$emit("created");
     },
     gusClose(){

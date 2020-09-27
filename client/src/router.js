@@ -1,67 +1,67 @@
 import Vue from "vue";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Home from "./components/Home";
 
-import EnergyCarry from "./components/KnowledgeBaseComponents/EnergyCarry";
-import Units from "./components/KnowledgeBaseComponents/Units";
-import Categories from "./components/KnowledgeBaseComponents/Categories";
-import Resources from "./components/KnowledgeBaseComponents/Resources";
-import ResourcesAdd from "./components/KnowledgeBaseComponents/ResourceAdd";
-
-import Main from "./components/Modules/Main";
-
-import SecretService from "./components/SecretService";
 import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
+    { name: "login", path: "/login", component: () => import(/* webpackChunkName: "Auth-Login" */ './views/auth/Login.vue'), },
+    { name: "register", path: "/register", component:() => import(/* webpackChunkName: "Auth-Register" */ './views/auth/Register.vue'), },
     {
       name: "home",
-      path: "/",
-      component: Home,
+      path: "",
+      component:() => import(/* webpackChunkName: "App-Home" */ './views/app/Home.vue') ,
       children: [
         {
           path: "/energyResources",
           name: "energyRes",
-          component: EnergyCarry,
+          component:() => import(/* webpackChunkName: "KnowledgeBase-EnergyResources" */ './views/app/knowledgeBase/EnergyCarry.vue'),
         },
         {
           path: "/units",
           name: "units",
-          component: Units,
+          component:() => import(/* webpackChunkName: "KnowledgeBase-Units" */ './views/app/knowledgeBase/Units.vue'),
         },
         {
           path: "/category",
           name: "category",
-          component: Categories,
+          component:() => import(/* webpackChunkName: "KnowledgeBase-Categories" */ './views/app/knowledgeBase/Categories.vue'),
         },
         {
           path: "/resources",
           name: "resources",
-          component: Resources,
+          component:() => import(/* webpackChunkName: "KnowledgeBase-Resources" */ './views/app/knowledgeBase/Resources.vue'),
         },
         {
           path: "/resourcesadd",
           name: "resourcesadd",
-          component: ResourcesAdd,
+          component: () => import(/* webpackChunkName: "KnowledgeBase-ResourceAdd" */ './views/app/knowledgeBase/ResourceAdd.vue'),
+        },
+        {
+          path: "/sources",
+          name: "sources",
+          component: () => import(/* webpackChunkName: "KnowledgeBase-Sources" */ './views/app/knowledgeBase/Sources.vue'),
         },
         {
           path: "/modules",
           name: "modules",
-          component: Main,
+          component: () => import(/* webpackChunkName: "Modules" */ './views/app/Modules.vue'),
         },
         {
-          path: "/rafon",
-          name: "secretRafonix",
-          component: SecretService,
+          path: "/stages",
+          name: "stages",
+          component: () => import(/* webpackChunkName: "Stages" */ './views/app/Stages.vue'),
+        },
+        {
+          path: "/lines",
+          name: "lines",
+          component: () => import(/* webpackChunkName: "Lines" */ './views/app/Lines.vue'),
         },
       ],
     },
-    { name: "login", path: "/login", component: Login },
-    { name: "register", path: "/register", component: Register },
   ],
 });
 
@@ -70,8 +70,6 @@ router.beforeEach((to, from, next) => {
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem("user");
 
-  // trying to access a restricted page + not logged in
-  // redirect to login page
   if (authRequired && !loggedIn) {
     next("/login");
   } else {
