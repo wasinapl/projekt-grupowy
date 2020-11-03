@@ -8,6 +8,8 @@ import ResourceFactor from './controllers/ResourceFactor';
 import ResourceSource from './controllers/ResourceSource';
 import ResourceUnit from './controllers/ResourceUnit';
 import Modules from './controllers/Modules';
+import Lines from './controllers/Lines';
+import Stages from './controllers/Stages';
 const express = require("express");
 const app = express();
 var bodyParser = require("body-parser");
@@ -44,7 +46,7 @@ app.get('/api/cat/getall', Categories.getAll);  //kategorie wszystkie
 app.post('/api/cat/add', Categories.insertData);
 app.post('/api/cat/addtores', Categories.boundToRes);// dodawanie kategorii do resource po id
 
-app.get('/api/resources/getall',Resources.getAll); 
+app.get('/api/resources/getall',Resources.getAll);
 app.post('/api/resources/add',Resources.insertData) ///surowce
 app.get('/api/resources/getallfactor',ResourceFactor.getAll);  //surowce wspolczynnik
 app.post('/api/resources/addfactor', ResourceFactor.insertData);// ----//--------
@@ -56,6 +58,27 @@ app.post('/api/resources/sourceUploadFile', ResourceSource.upload);
 app.get('/api/resources/getallunit',ResourceUnit.getAll);  //surowce źródło
 
 app.get('/api/modules/getall',Modules.getAll);  //moduły get all
+app.get('/api/modules/formSelect',Modules.getVegResFormSelect); // fetch data (vegetables and resources for form)
+app.delete('/api/modules',Modules.deleteById); // delete
+app.post('/api/modules',Modules.insertData); // insert
+app.put('/api/modules',Modules.editById); // edit
+
+
+
+app.get('/api/stages/getall',Stages.getAll);  //stages get all
+app.delete('/api/stages',Stages.deleteData);  //stages delete
+app.post('/api/stages',Stages.insertData); //stages insert
+app.post('/api/stages/modules',Stages.insertModule); // insert
+app.get('/api/stages/byVegetable', Stages.getByVegetable);
+app.get('/api/modules/byVegetable', Modules.getModuleByVegetableId);
+
+
+
+app.get('/api/lines/getall',Lines.getAll);  //linie get all
+app.post('/api/lines',Lines.insertData);  //linie insert
+app.delete('/api/lines',Lines.deleteData);  //linie delete
+app.put('/api/lines',Lines.insertStage);  //linie delete
+
 
 
 

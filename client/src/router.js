@@ -60,6 +60,11 @@ const router = new VueRouter({
           name: "lines",
           component: () => import(/* webpackChunkName: "Lines" */ './views/app/Lines.vue'),
         },
+        {
+          path: "/calculator",
+          name: "calculator",
+          component: () => import(/* webpackChunkName: "Calc" */ './views/app/Calc.vue'),
+        },
       ],
     },
   ],

@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/';
+const API_URL = 'http://kahlpn.pl:3000/api/';
 
 class AuthService {
   login(user) {
     return axios
       .post(API_URL + 'login', {
         email: user.email,
-        password: user.password
+        password: user.password 
       })
       .then(response => {
         if (response.data.token) {
